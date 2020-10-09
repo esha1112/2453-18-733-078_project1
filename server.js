@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 let jwt = require('jsonwebtoken');
 let config = require('./config');
 let middleware = require('./middleware');
-let app=require('./mon5.js');
+let app=require('./index.js');
 class HandlerGenerator {
   login (req, res) {
     let username = req.body.username;
