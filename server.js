@@ -1,11 +1,9 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 let jwt = require('jsonwebtoken');
 let config = require('./config');
 let middleware = require('./middleware');
-let app=require('./hosman.js');
-
+let app=require('./mon5.js');
 class HandlerGenerator {
   login (req, res) {
     let username = req.body.username;
@@ -40,10 +38,10 @@ class HandlerGenerator {
       });
     }
   }
-  testfunction (req, res) {
+  index (req, res) {
     res.json({
       success: true,
-      message: 'testing successful'
+      message: 'Testing successful'
     });
   }
 }
@@ -51,15 +49,15 @@ class HandlerGenerator {
 // Starting point of the server
 function main () {
   let app = express(); // Export app for other routes to use
-  let handlers = new HandlerGenerator();
-  const port = 100;
+  let handlers = new HandlerGenerator();   //object class
+  const port =  100  
   app.use(bodyParser.urlencoded({ // Middleware
     extended: true
   }));
   app.use(bodyParser.json());
   // Routes & Handlers
   app.post('/login', handlers.login);
-  app.get('/', middleware.checkToken, handlers.testfunction);
+  app.get('/', middleware.checkToken, handlers.index);
   app.listen(port, () => console.log(`Server is listening on port: ${port}`));
 }
 
