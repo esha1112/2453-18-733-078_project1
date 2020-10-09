@@ -2,13 +2,14 @@ let jwt = require('jsonwebtoken');
 const config = require('./config.js');
 
 let checkToken = (req, res, next) => {
-  let token = req.headers['authorization']; // Express headers are auto converted to lowercase
-  if (token.startsWith('Bearer ')) {
-    // Remove Bearer from string
-    token = token.slice(7, token.length);
-  }
+    let token = req.headers['authorization'];
+    
+    if(token){
+    if (token.startsWith('Bearer ')) {
+      // Remove Bearer from string
+      token = token.slice(7, token.length);    //bearer skip
+    }
 
-  if (token) {
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
         return res.json({
@@ -30,4 +31,4 @@ let checkToken = (req, res, next) => {
 
 module.exports = {
   checkToken: checkToken
-}
+};
