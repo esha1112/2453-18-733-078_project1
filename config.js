@@ -1,4 +1,3 @@
-module.exports=
-{
-    secret: 'my micro project'
+module.exports = {
+  secret: 'micro_project_1'
 };
